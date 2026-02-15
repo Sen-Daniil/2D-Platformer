@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://du6t0btb3w4dm"
-path="res://.godot/imported/Sprite-0002 (1).png-b7a56ea27ca06baa1f34d681ac5eca6e.ctex"
+uid="uid://cg2qmxlwnl1g3"
+path="res://.godot/imported/mob_healt_progress.png-5e3bc38ebb38e6a5625b8f61679f2057.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/Sprite-0002 (1).png"
-dest_files=["res://.godot/imported/Sprite-0002 (1).png-b7a56ea27ca06baa1f34d681ac5eca6e.ctex"]
+source_file="res://Asset/Sprite/mob_healt_progress.png"
+dest_files=["res://.godot/imported/mob_healt_progress.png-5e3bc38ebb38e6a5625b8f61679f2057.ctex"]
 
 [params]
 

@@ -9,9 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://bv7w7qmhoj2y3" path="res://Jungle Asset Pack/parallax background/plx-5.png" id="6_2orkt"]
 [ext_resource type="Texture2D" uid="uid://btw71iff2fcvp" path="res://Jungle Asset Pack/jungle tileset/jungle tileset.png" id="7_aicyk"]
 [ext_resource type="PackedScene" uid="uid://bbndjpxi0rsfl" path="res://scn/Mobs/skeleton.tscn" id="8_km5ld"]
-[ext_resource type="Texture2D" uid="uid://benlsqmj1fqe3" path="res://Asset/Sprite-0003 (1).png" id="10_4r82a"]
-[ext_resource type="Texture2D" uid="uid://de3aju5h6xotn" path="res://Asset/Sprite-0001 (1).png" id="11_fmq4d"]
-[ext_resource type="Texture2D" uid="uid://du6t0btb3w4dm" path="res://Asset/Sprite-0002 (1).png" id="12_a28k0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8b0r0"]
 texture = ExtResource("7_aicyk")
@@ -385,6 +382,15 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_8b0r0")
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1820n"]
+load_path = "res://.godot/imported/Sprite-0003 (1).png-01a6b13734a2c6306bc47fdf615d89c1.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c4sp3"]
+load_path = "res://.godot/imported/Sprite-0001 (1).png-d8f8a60e8ddb9c2313202219ad3761ce.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_15qrg"]
+load_path = "res://.godot/imported/Sprite-0002 (1).png-13a88ad9b2273a25f468cea2ee303064.ctex"
+
 [node name="Level" type="Node2D" unique_id=1326271996]
 script = ExtResource("1_i2t4f")
 
@@ -453,15 +459,15 @@ position = Vector2(307, 563)
 
 [node name="HelthBar" type="TextureProgressBar" parent="CanvasLayer" unique_id=1250577401]
 modulate = Color(1, 1, 1, 0.8509804)
-offset_left = 48.0
-offset_top = 34.0
-offset_right = 214.90909
-offset_bottom = 68.0
+offset_left = 53.0
+offset_top = 37.0
+offset_right = 219.90909
+offset_bottom = 71.0
 value = 50.0
 nine_patch_stretch = true
-texture_under = ExtResource("10_4r82a")
-texture_over = ExtResource("11_fmq4d")
-texture_progress = ExtResource("12_a28k0")
+texture_under = SubResource("CompressedTexture2D_1820n")
+texture_over = SubResource("CompressedTexture2D_c4sp3")
+texture_progress = SubResource("CompressedTexture2D_15qrg")
 tint_over = Color(0.8580724, 0.6320402, 1.1551381e-06, 1)
 tint_progress = Color(1, 0, 0.043137256, 1)
 

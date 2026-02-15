@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Signals="*uid://dvfqhigyh5e32"
+Global="*uid://qkfoqokut2hg"
 
 [display]
 
@@ -79,6 +80,7 @@ jump={
 2d_physics/layer_2="player"
 2d_physics/layer_3="enemies"
 2d_physics/layer_5="pl"
+2d_physics/fbx2gltf/enabled=false
 
 [physics]
 
