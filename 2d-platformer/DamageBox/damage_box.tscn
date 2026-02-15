@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://cabdmahwqiuae"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mwy2l"]
+radius = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eu384"]
+radius = 15.0
 
 [node name="DamageBox" type="Node2D" unique_id=500668795]
 
@@ -13,4 +17,5 @@ shape = SubResource("CircleShape2D_mwy2l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=972444790]
 position = Vector2(22, 0)
-shape = SubResource("CircleShape2D_mwy2l")
+shape = SubResource("CircleShape2D_eu384")
+disabled = true

@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal health_changed (new_health)
+
 enum {
 	MOVE,
 	ATTACK,
@@ -9,7 +11,10 @@ enum {
 	ATTACK5,
 	ATTACK6,
 	BLOCK,
-	SLIDE
+	SLIDE,
+	DAMAGE,
+	DEATH,
+	#JUMP,
 }
 
 const SPEED = 300.0
@@ -17,14 +22,29 @@ const JUMP_VELOCITY = -400.0
 
 @onready var anim = $AnimatedSprite2D
 @onready var animPlayer = $AnimationPlayer
-var health = 100
+var max_health = 120
+var health
 var gold = 0
 var state = MOVE
 var combo = false
 var attack_cooldown = false
 var player_pos
 
+func _ready():
+	Signals.connect("enemy_attack", Callable (self, "_on_damage_received"))
+	health = max_health
+
 func _physics_process(delta: float) -> void:
+	
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+		
+	if velocity.y > 0:
+		animPlayer.play("Fall")
+		
+	#if Input.is_action_just_pressed("jump") and is_on_floor():
+		#state = JUMP
+		
 	match state: 
 		MOVE:
 			move_state()
@@ -44,25 +64,16 @@ func _physics_process(delta: float) -> void:
 			block_state()
 		SLIDE:
 			slide_state()
+		DAMAGE:
+			damage_state()
+		DEATH:
+			death_state()
+		#JUMP:
+			#jump_state()
 		
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	# Handle jump.
-	#if Input.is_action_just_pressed("attack") and is_on_floor():
-		#velocity.y = JUMP_VELOCITY
-		#animPlayer.play("Jump")
-	
-	if velocity.y > 0:
-		animPlayer.play("Fall")
-		
-	if health <= 0:
-		health = 0
-		animPlayer.play("Death")
-		await animPlayer.animation_finished
-		queue_free()
-		get_tree().change_scene_to_file("res://menu.tscn")
+	if Input.is_action_just_pressed("jump") and is_on_floor() and not(Input.is_action_pressed("slide1")):
+		velocity.y = JUMP_VELOCITY
+		animPlayer.play("Jump")
 
 	move_and_slide()
 	
@@ -89,10 +100,10 @@ func move_state():
 	if Input.is_action_pressed("block"):
 		state = BLOCK
 		
-	if Input.is_action_just_pressed("attack") and attack_cooldown == false:
+	if Input.is_action_just_pressed("attack") and attack_cooldown == false and velocity.y == 0:
 		state = ATTACK
 		
-	if Input.is_action_pressed("slide1") and velocity.x != 0 and Input.is_action_pressed("slide2"):
+	if Input.is_action_pressed("slide1") and velocity.x != 0 and Input.is_action_pressed("slide2") and velocity.y == 0:
 		state = SLIDE
 		
 func block_state():
@@ -157,6 +168,36 @@ func attack_freeze():
 	attack_cooldown = true
 	await get_tree().create_timer(0.5).timeout
 	attack_cooldown = false
+	
+func damage_state():
+	velocity.x = 0
+	animPlayer.play("Damage")
+	await animPlayer.animation_finished
+	state = MOVE
+	
+func death_state():
+	velocity.x = 0
+	animPlayer.play("Death")
+	await animPlayer.animation_finished
+	queue_free()
+	get_tree().change_scene_to_file.bind("res://scn/Menu/menu.tscn").call_deferred()
+	
+#func jump_state():	
+	#velocity.y = JUMP_VELOCITY
+	#animPlayer.play("Jump")
+	#await animPlayer.animation_finished
+	#state = MOVE
+	
+func _on_damage_received (enemy_damage):
+	health -= enemy_damage
+	if health <= 0:
+		health = 0
+		state = DEATH
+	else:
+		state = DAMAGE
+	emit_signal("health_changed", health)
+	print(health)
+	
 	
 	
 	

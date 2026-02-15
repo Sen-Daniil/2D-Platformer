@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var sprite = $AnimatedSprite2D
 var player
 var direction
+var damage = 20
 
 enum {
 	IDLE,
@@ -61,4 +62,5 @@ func chase_state():
 		sprite.flip_h = false
 		$AttackDirection.rotation_degrees = 0
 		
-	
+func _on_hit_box_area_entered(area: Area2D) -> void:
+	Signals.emit_signal("enemy_attack", damage)
