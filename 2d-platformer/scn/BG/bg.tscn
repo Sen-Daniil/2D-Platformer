@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://go1iaqqic286"]
 
 [ext_resource type="Texture2D" uid="uid://d0xbakocqsgsa" path="res://Jungle Asset Pack/parallax background/plx-1.png" id="1_36ycx"]
-[ext_resource type="Script" uid="uid://mrrldypoab5h" path="res://bg.gd" id="1_plmvg"]
+[ext_resource type="Script" uid="uid://mrrldypoab5h" path="res://scn/BG/bg.gd" id="1_plmvg"]
 [ext_resource type="Texture2D" uid="uid://oidi81mkddfs" path="res://Jungle Asset Pack/parallax background/plx-2.png" id="2_plmvg"]
 [ext_resource type="Texture2D" uid="uid://bn1qfuogu0q28" path="res://Jungle Asset Pack/parallax background/plx-3.png" id="3_7sudn"]
 [ext_resource type="Texture2D" uid="uid://rx0vrp6xpw7" path="res://Jungle Asset Pack/parallax background/plx-4.png" id="4_b16yh"]

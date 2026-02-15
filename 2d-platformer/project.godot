@@ -15,6 +15,10 @@ run/main_scene="uid://byr7xwu7f3oj"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Signals="*uid://dvfqhigyh5e32"
+
 [display]
 
 window/stretch/mode="canvas_items"
@@ -26,6 +30,10 @@ project/assembly_name="2D Platformer"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/AS2P/plugin.cfg")
+
+[filesystem]
+
+import/fbx2gltf/enabled=false
 
 [input]
 

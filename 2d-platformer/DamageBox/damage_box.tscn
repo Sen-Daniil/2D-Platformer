@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cabdmahwqiuae"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mwy2l"]
+
+[node name="DamageBox" type="Node2D" unique_id=500668795]
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=671054051]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1099071565]
+shape = SubResource("CircleShape2D_mwy2l")
+
+[node name="HitBox" type="Area2D" parent="." unique_id=1371413932]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=972444790]
+position = Vector2(22, 0)
+shape = SubResource("CircleShape2D_mwy2l")

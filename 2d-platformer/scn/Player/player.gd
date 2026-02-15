@@ -22,6 +22,7 @@ var gold = 0
 var state = MOVE
 var combo = false
 var attack_cooldown = false
+var player_pos
 
 func _physics_process(delta: float) -> void:
 	match state: 
@@ -64,6 +65,9 @@ func _physics_process(delta: float) -> void:
 		get_tree().change_scene_to_file("res://menu.tscn")
 
 	move_and_slide()
+	
+	player_pos = self.position
+	Signals.emit_signal("player_position_update", player_pos)
 	
 
 

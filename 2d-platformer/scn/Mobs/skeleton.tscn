@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bbndjpxi0rsfl"]
 
-[ext_resource type="Script" uid="uid://dojmnkspqsjab" path="res://Mobs/skeleton.gd" id="1_8neyt"]
+[ext_resource type="Script" uid="uid://dojmnkspqsjab" path="res://scn/Mobs/skeleton.gd" id="1_8neyt"]
 [ext_resource type="Texture2D" uid="uid://bqvae5kpk2gq0" path="res://Asset/Skeleton enemy/Skeleton enemy.png" id="1_bs4jm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bs4jm"]
