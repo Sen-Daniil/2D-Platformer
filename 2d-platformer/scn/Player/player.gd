@@ -29,6 +29,9 @@ var state = MOVE
 var combo = false
 var attack_cooldown = false
 var player_pos
+var damsge_basic = 10
+var damage_multiplir = 1
+var damage_current
 
 func _ready():
 	Signals.connect("enemy_attack", Callable (self, "_on_damage_received"))
@@ -44,6 +47,8 @@ func _physics_process(delta: float) -> void:
 		
 	#if Input.is_action_just_pressed("jump") and is_on_floor():
 		#state = JUMP
+	
+	damage_current = damsge_basic * damage_multiplir
 		
 	match state: 
 		MOVE:
@@ -94,8 +99,10 @@ func move_state():
 			animPlayer.play("Idle")
 	if direction == -1:
 		anim.flip_h = true
+		$AttackDirection.rotation_degrees = 180
 	elif direction == 1:
 		anim.flip_h = false
+		$AttackDirection.rotation_degrees = 0
 	
 	if Input.is_action_pressed("block"):
 		state = BLOCK
@@ -118,6 +125,7 @@ func slide_state():
 	state = MOVE
 	
 func attack_state():
+	damage_multiplir = 1
 	if Input.is_action_just_pressed("attack") and combo == true:
 		state = ATTACK2
 	velocity.x = 0
@@ -127,6 +135,7 @@ func attack_state():
 	state = MOVE
 	
 func attack2_state():
+	damage_multiplir = 1.2
 	if Input.is_action_just_pressed("attack") and combo == true:
 		state = ATTACK3
 	animPlayer.play("Attack2")
@@ -134,6 +143,7 @@ func attack2_state():
 	state = MOVE
 	
 func attack3_state():
+	damage_multiplir = 1.4
 	if Input.is_action_just_pressed("attack") and combo == true:
 		state = ATTACK4
 	animPlayer.play("Attack3")
@@ -141,6 +151,7 @@ func attack3_state():
 	state = MOVE
 	
 func attack4_state():
+	damage_multiplir = 1.6
 	if Input.is_action_just_pressed("attack") and combo == true:
 		state = ATTACK5
 	animPlayer.play("Attack4")
@@ -148,6 +159,7 @@ func attack4_state():
 	state = MOVE
 	
 func attack5_state():
+	damage_multiplir = 1.8
 	if Input.is_action_just_pressed("attack") and combo == true:
 		state = ATTACK6
 	animPlayer.play("Attack5")
@@ -155,6 +167,7 @@ func attack5_state():
 	state = MOVE
 	
 func attack6_state():
+	damage_multiplir = 2
 	animPlayer.play("Attack6")
 	await animPlayer.animation_finished
 	state = MOVE
@@ -189,20 +202,21 @@ func death_state():
 	#state = MOVE
 	
 func _on_damage_received (enemy_damage):
+	if state == BLOCK:
+		enemy_damage /= 2
+	elif state == SLIDE:
+		enemy_damage = 0
+	else:
+		state = DAMAGE
 	health -= enemy_damage
 	if health <= 0:
 		health = 0
 		state = DEATH
-	else:
-		state = DAMAGE
+		
+	
+		
 	emit_signal("health_changed", health)
 	print(health)
 	
-	
-	
-	
-	
-	
-	
-
-		
+func _on_hit_box_area_entered(area: Area2D) -> void:
+	Signals.emit_signal("player_attack", damage_current)
