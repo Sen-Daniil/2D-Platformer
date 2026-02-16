@@ -31,9 +31,6 @@ var state: int = 0:
 			RECOVER:
 				recover_state()
 				
-func _ready():
-	Signals.connect("player_position_update", Callable (self, "_on_player_position_update"))
-	
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -45,11 +42,11 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
-func _on_player_position_update (player_pos):
-	player = player_pos
+
+	player = Global.player_pos
 	
 
-func _on_attack_range_body_entered(body: Node2D) -> void:
+func _on_attack_range_body_entered(_body: Node2D) -> void:
 	state = ATTACK
 	
 func idle_state():
@@ -71,11 +68,13 @@ func chase_state():
 		$AttackDirection.rotation_degrees = 0
 		
 func damage_state():
+	direction = (player - self.position).normalized()
 	animPlayer.play("Damage")
 	await animPlayer.animation_finished
 	state = IDLE
 	
 func death_state():
+	Signals.emit_signal('enemy_died', position)
 	animPlayer.play("Death")
 	await animPlayer.animation_finished
 	queue_free()
@@ -84,9 +83,8 @@ func recover_state():
 	animPlayer.play("Recover")
 	await animPlayer.animation_finished
 	state = IDLE
-	
 		
-func _on_hit_box_area_entered(area: Area2D) -> void:
+func _on_hit_box_area_entered(_area: Area2D) -> void:
 	Signals.emit_signal("enemy_attack", damage)
 	
 func _on_mobs_health_no_health() -> void:

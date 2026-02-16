@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://b1yrldqur74hm"]
+
+[node name="PauseMenu" type="Control" unique_id=1287861488]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=37403651]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -146.0
+offset_top = -209.0
+offset_right = 111.0
+offset_bottom = 165.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1643302273]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.5
+offset_top = -128.0
+offset_right = 91.5
+offset_bottom = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 13
+alignment = 1
+
+[node name="Resume" type="Button" parent="Panel/VBoxContainer" unique_id=62661593]
+layout_mode = 2
+localize_numeral_system = false
+text = "Resume
+"
+
+[node name="Save" type="Button" parent="Panel/VBoxContainer" unique_id=669031420]
+layout_mode = 2
+text = "Save
+"
+
+[node name="Load" type="Button" parent="Panel/VBoxContainer" unique_id=1034055628]
+layout_mode = 2
+text = "Load
+"
+
+[node name="Quit" type="Button" parent="Panel/VBoxContainer" unique_id=1598933932]
+layout_mode = 2
+text = "Quit
+
+"
+
+[node name="Label" type="Label" parent="Panel" unique_id=78695983]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -55.0
+offset_top = 13.0
+offset_right = 55.0
+offset_bottom = 36.0
+grow_horizontal = 2
+text = "MENU"
+horizontal_alignment = 1

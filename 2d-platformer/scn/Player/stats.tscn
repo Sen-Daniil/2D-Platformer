@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://c0rmhb57fxcrx"]
+
+[ext_resource type="Script" uid="uid://bxgfnt5oy0mvb" path="res://scn/Player/stats.gd" id="1_2uh86"]
+[ext_resource type="Texture2D" uid="uid://dy5xiyen16esp" path="res://Asset/Sprite/Sprite-0002 (1) (1).png" id="1_jnfrk"]
+[ext_resource type="Texture2D" uid="uid://6lhu505hf67a" path="res://Asset/Sprite/energy_bar_empty.png" id="3_5j4uv"]
+[ext_resource type="Texture2D" uid="uid://bljlhb7rfxaxc" path="res://Asset/Sprite/energy_bar_progress.png" id="4_taytp"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1820n"]
+load_path = "res://.godot/imported/Sprite-0003 (1).png-01a6b13734a2c6306bc47fdf615d89c1.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c4sp3"]
+load_path = "res://.godot/imported/Sprite-0001 (1).png-d8f8a60e8ddb9c2313202219ad3761ce.ctex"
+
+[node name="Stats" type="CanvasLayer" unique_id=478911576]
+script = ExtResource("1_2uh86")
+
+[node name="HelthBar" type="TextureProgressBar" parent="." unique_id=1034015345]
+modulate = Color(1, 1, 1, 0.8509804)
+offset_left = 53.0
+offset_top = 37.0
+offset_right = 219.90909
+offset_bottom = 71.0
+value = 50.0
+nine_patch_stretch = true
+texture_under = SubResource("CompressedTexture2D_1820n")
+texture_over = SubResource("CompressedTexture2D_c4sp3")
+texture_progress = ExtResource("1_jnfrk")
+tint_over = Color(0.8580724, 0.6320402, 1.1551381e-06, 1)
+tint_progress = Color(1, 0, 0.043137256, 1)
+
+[node name="Stamina" type="TextureProgressBar" parent="." unique_id=501488657]
+offset_left = 57.0
+offset_top = 79.0
+offset_right = 215.0
+offset_bottom = 96.0
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("3_5j4uv")
+texture_progress = ExtResource("4_taytp")
+tint_progress = Color(0, 0.4814815, 0.6927108, 1)
+
+[node name="HealthRegen" type="Timer" parent="." unique_id=873708145]
+wait_time = 4.0
+autostart = true
+
+[connection signal="timeout" from="HealthRegen" to="." method="_on_health_regen_timeout"]

@@ -474,6 +474,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../AttackDirection/DamageBox/HitBox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_uhxtc"]
 length = 3.0
@@ -524,6 +536,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../AttackDirection/DamageBox/HurtBox/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_4w2lp"]
@@ -603,6 +627,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../AttackDirection/DamageBox/HurtBox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_vf8bf"]
@@ -684,7 +720,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8neyt"]
-size = Vector2(23, 38)
+size = Vector2(22, 38)
 
 [node name="Skeleton" type="CharacterBody2D" unique_id=1529395668]
 collision_layer = 4
@@ -714,17 +750,17 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDirection/AttackRange" unique_id=619279502]
-position = Vector2(20.5, -5)
+position = Vector2(20, -5)
 shape = SubResource("RectangleShape2D_8neyt")
 
 [node name="DamageBox" parent="AttackDirection" unique_id=500668795 instance=ExtResource("3_opxtk")]
 
 [node name="HurtBox" parent="AttackDirection/DamageBox" index="0" unique_id=671054051]
 collision_layer = 32
-collision_mask = 0
+collision_mask = 64
 
 [node name="CollisionShape2D" parent="AttackDirection/DamageBox/HurtBox" index="0" unique_id=1099071565]
-position = Vector2(-2, 0)
+position = Vector2(-3, 0)
 
 [node name="HitBox" parent="AttackDirection/DamageBox" index="1" unique_id=1371413932]
 collision_layer = 0
@@ -736,8 +772,10 @@ position = Vector2(17, -4)
 [node name="MobsHealth" parent="." unique_id=759131617 instance=ExtResource("4_vf8bf")]
 position = Vector2(0, -30)
 scale = Vector2(0.7, 0.7)
+max_health = 10
 
 [connection signal="body_entered" from="AttackDirection/AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="area_entered" from="AttackDirection/DamageBox/HurtBox" to="MobsHealth" method="_on_hurt_box_area_entered"]
 [connection signal="area_entered" from="AttackDirection/DamageBox/HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="damage_received" from="MobsHealth" to="." method="_on_mobs_health_damage_received"]
 [connection signal="no_health" from="MobsHealth" to="." method="_on_mobs_health_no_health"]
