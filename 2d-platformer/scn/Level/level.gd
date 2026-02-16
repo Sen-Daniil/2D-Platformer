@@ -7,7 +7,7 @@ var skeleton_preload = preload("res://scn/Mobs/skeleton.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	Global.gold = 0
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cj2k3swobg8od"]
+
+[ext_resource type="Texture2D" uid="uid://bylccoyipwc67" path="res://Asset/Sprite/Gold.png" id="1_a8u3p"]
+[ext_resource type="Script" uid="uid://dxdt54y4h0dqe" path="res://scn/Gold/gold.gd" id="1_lvhaq"]
+
+[node name="Gold" type="CanvasLayer" unique_id=1313179828]
+script = ExtResource("1_lvhaq")
+
+[node name="GoldIcon" type="TextureRect" parent="." unique_id=1358731536]
+offset_left = 73.0
+offset_top = 92.0
+offset_right = 153.0
+offset_bottom = 168.0
+texture = ExtResource("1_a8u3p")
+stretch_mode = 4
+
+[node name="GoldText" type="Label" parent="." unique_id=1209452841]
+offset_left = 155.0
+offset_top = 111.0
+offset_right = 282.0
+offset_bottom = 181.0
+theme_override_font_sizes/font_size = 27
+text = "0"

@@ -735,7 +735,7 @@ shape = SubResource("CapsuleShape2D_bs4jm")
 position = Vector2(-0.49999702, -0.49999642)
 scale = Vector2(1.578125, 1.578125)
 sprite_frames = SubResource("SpriteFrames_k3hpn")
-animation = &"Idle"
+animation = &"Death"
 autoplay = "Idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1277369317]
@@ -767,7 +767,7 @@ collision_layer = 0
 collision_mask = 16
 
 [node name="CollisionShape2D" parent="AttackDirection/DamageBox/HitBox" index="0" unique_id=972444790]
-position = Vector2(17, -4)
+position = Vector2(18, -4)
 
 [node name="MobsHealth" parent="." unique_id=759131617 instance=ExtResource("4_vf8bf")]
 position = Vector2(0, -30)

@@ -26,7 +26,7 @@ var run_speed = 1
 @onready var stats = $Stats
 
 
-var gold = 0
+
 var state = MOVE
 var combo = false
 var attack_cooldown = false
