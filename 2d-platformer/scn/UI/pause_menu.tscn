@@ -15,10 +15,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -146.0
-offset_top = -209.0
-offset_right = 111.0
-offset_bottom = 132.0
+offset_left = -178.5
+offset_top = -255.0
+offset_right = 175.5
+offset_bottom = 254.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -29,10 +29,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -87.5
-offset_top = -90.0
-offset_right = 85.5
-offset_bottom = 91.0
+offset_left = -135.0
+offset_top = -158.0
+offset_right = 131.0
+offset_bottom = 95.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 13
@@ -60,6 +60,10 @@ text = "Load
 [node name="Quit" type="Button" parent="Panel/VBoxContainer" unique_id=1598933932]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.8745098, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.9490196, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.9490196, 0, 0, 1)
 text = "Quit
 
 "

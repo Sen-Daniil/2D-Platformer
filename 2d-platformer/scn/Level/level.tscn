@@ -9,9 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://rx0vrp6xpw7" path="res://Jungle Asset Pack/parallax background/plx-4.png" id="5_8cye3"]
 [ext_resource type="Texture2D" uid="uid://bv7w7qmhoj2y3" path="res://Jungle Asset Pack/parallax background/plx-5.png" id="6_2orkt"]
 [ext_resource type="Texture2D" uid="uid://btw71iff2fcvp" path="res://Jungle Asset Pack/jungle tileset/jungle tileset.png" id="7_aicyk"]
-[ext_resource type="PackedScene" uid="uid://bbndjpxi0rsfl" path="res://scn/Mobs/skeleton.tscn" id="8_km5ld"]
 [ext_resource type="PackedScene" uid="uid://b1yrldqur74hm" path="res://scn/UI/pause_menu.tscn" id="10_c4sp3"]
-[ext_resource type="PackedScene" uid="uid://lv42bv6dblwt" path="res://scn/collectbles/coin.tscn" id="12_4r82a"]
 [ext_resource type="Script" uid="uid://feripoyy6sne" path="res://scn/Level/collectbles.gd" id="12_fmq4d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8b0r0"]
@@ -446,22 +444,27 @@ layer_0/tile_data = PackedInt32Array(2490368, 393216, 2, 2490369, 393216, 2, 249
 
 [node name="Mobs" type="Node2D" parent="." unique_id=997824932]
 
-[node name="Skeleton" parent="Mobs" unique_id=1529395668 instance=ExtResource("8_km5ld")]
-position = Vector2(694, 511)
-
 [node name="Spawner" type="Timer" parent="Mobs" unique_id=171628287]
 wait_time = 5.0
+autostart = true
+
+[node name="Spawner2" type="Timer" parent="Mobs" unique_id=1115640956]
+wait_time = 3.973
 autostart = true
 
 [node name="Player" type="Node2D" parent="." unique_id=47345654]
 
 [node name="Player" parent="Player" unique_id=1243089262 instance=ExtResource("1_u52ul")]
-position = Vector2(307, 563)
+position = Vector2(380.77542, 505.18176)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1129628295]
 
 [node name="PauseMenu" parent="CanvasLayer" unique_id=1287861488 instance=ExtResource("10_c4sp3")]
 process_mode = 2
+offset_left = -5.0
+offset_top = 3.0
+offset_right = -5.0
+offset_bottom = 3.0
 
 [node name="MenuButton" type="Button" parent="CanvasLayer" unique_id=100213795]
 process_mode = 3
@@ -481,10 +484,8 @@ text = "menu"
 [node name="Collectbles" type="Node2D" parent="." unique_id=463533796]
 script = ExtResource("12_fmq4d")
 
-[node name="Coin" parent="Collectbles" unique_id=191903312 instance=ExtResource("12_4r82a")]
-position = Vector2(382, 564)
-
 [connection signal="timeout" from="Mobs/Spawner" to="." method="_on_spawner_timeout"]
+[connection signal="timeout" from="Mobs/Spawner2" to="." method="_on_spawner_2_timeout"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/Resume" to="Maneger" method="_on_resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/Save" to="Maneger" method="_on_save_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/Load" to="Maneger" method="_on_load_pressed"]

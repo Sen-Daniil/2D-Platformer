@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-
-
 enum {
 	MOVE,
 	ATTACK,
@@ -14,7 +12,6 @@ enum {
 	SLIDE,
 	DAMAGE,
 	DEATH,
-	#JUMP,
 }
 
 const SPEED = 200.0
@@ -24,6 +21,7 @@ var run_speed = 1
 @onready var anim = $AnimatedSprite2D
 @onready var animPlayer = $AnimationPlayer
 @onready var stats = $Stats
+@onready var leafs: GPUParticles2D = $Leafs
 
 
 
@@ -34,6 +32,7 @@ var damsge_basic = 10
 var damage_multiplir = 1
 var damage_current
 var recovery = false
+var jump_count = false
 
 func _ready():
 	Signals.connect("enemy_attack", Callable (self, "_on_damage_received"))
@@ -75,12 +74,16 @@ func _physics_process(delta: float) -> void:
 			damage_state()
 		DEATH:
 			death_state()
-		#JUMP:
-			#jump_state()
 		
 	if Input.is_action_just_pressed("jump") and is_on_floor() and not(Input.is_action_pressed("slide1")):
+		jump_count = true
 		velocity.y = JUMP_VELOCITY
 		animPlayer.play("Jump")
+	elif velocity.y != 0 and Input.is_action_just_pressed("jump") and jump_count == true:
+		jump_count = false
+		velocity.y = JUMP_VELOCITY * 0.9
+		animPlayer.play("DoubleJump")
+		await animPlayer.animation_finished
 
 	move_and_slide()
 	
@@ -105,14 +108,14 @@ func move_state():
 	elif direction == 1:
 		anim.flip_h = false
 		$AttackDirection.rotation_degrees = 0
-	if Input.is_action_pressed("run") and not recovery:
+	if Input.is_action_pressed("run") and not recovery and (Input.is_action_pressed("left") or Input.is_action_pressed("right")) :
 		run_speed = 1.5
 		stats.stamina -= stats.run_cost
 	else:
 		run_speed = 1
 	
 	if Input.is_action_pressed("block"):
-		if stats.stamina > 1 and recovery == false:
+		if stats.stamina > 1 and recovery == false and velocity.y == 0:
 				state = BLOCK
 		
 	if Input.is_action_just_pressed("attack") and attack_cooldown == false and velocity.y == 0 and stats.stamina > stats.stamina_cost:
@@ -204,8 +207,6 @@ func attack_freeze():
 	attack_cooldown = false
 	
 func damage_state():
-	animPlayer.play("Damage")
-	await animPlayer.animation_finished
 	state = MOVE
 	
 func death_state():
@@ -233,8 +234,6 @@ func _on_damage_received (enemy_damage):
 	if stats.health <= 0:
 		stats.health = 0
 		state = DEATH	
-	
-
 
 func _on_stats_no_stamina() -> void:
 	recovery = true
@@ -242,12 +241,11 @@ func _on_stats_no_stamina() -> void:
 	recovery = false
 	
 func damage_anim():
-	velocity.x = 0
 	self.modulate = Color(1,0,0,1)
-	if $AnimatedSprite2D.flip_h == true:
-		velocity.x += 200
-	else:
-		velocity.x -= 200
 	var tween = get_tree().create_tween()
 	tween.parallel().tween_property(self, "velocity", Vector2(0,0), 0.04)
 	tween.parallel().tween_property(self, "modulate", Color(1,1,1,1), 0.04)
+
+func steps():
+	leafs.emitting = true
+	leafs.one_shot = true

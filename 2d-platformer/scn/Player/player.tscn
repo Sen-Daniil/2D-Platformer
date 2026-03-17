@@ -7,9 +7,20 @@
 [ext_resource type="PackedScene" uid="uid://cabdmahwqiuae" path="res://DamageBox/damage_box.tscn" id="5_851wy"]
 [ext_resource type="PackedScene" uid="uid://c0rmhb57fxcrx" path="res://scn/Player/stats.tscn" id="6_hlrar"]
 [ext_resource type="PackedScene" uid="uid://cj2k3swobg8od" path="res://scn/Gold/gold.tscn" id="7_ejjyh"]
+[ext_resource type="PackedScene" uid="uid://drfghk07oh8ko" path="res://scn/Player/leafs.tscn" id="8_3ucvd"]
+[ext_resource type="Texture2D" uid="uid://3rgajlfwnt3s" path="res://Asset/button/arrow_button.png" id="9_8qu8i"]
+[ext_resource type="Texture2D" uid="uid://tvqcx8d0qaik" path="res://Asset/button/arrow_button_pressed.png" id="10_376rx"]
+[ext_resource type="Texture2D" uid="uid://d15ij5gonod24" path="res://Asset/button/attack_button.png" id="10_mvh6x"]
+[ext_resource type="Texture2D" uid="uid://bli1man67px7c" path="res://Asset/button/speed_button.png" id="11_3fr1j"]
+[ext_resource type="Texture2D" uid="uid://bfdrx6hnby5gt" path="res://Asset/button/block_button.png" id="12_pwibv"]
+[ext_resource type="Texture2D" uid="uid://7vmddymitep5" path="res://Asset/button/attack_button_pressed (1).png" id="12_uimrg"]
+[ext_resource type="Texture2D" uid="uid://b23l6milfr1j2" path="res://Asset/button/spell_button.png" id="13_oljel"]
+[ext_resource type="Texture2D" uid="uid://d3cfkcipr2ve5" path="res://Asset/button/speed_button_pressed.png" id="14_dgot3"]
+[ext_resource type="Texture2D" uid="uid://cykd7x3l5d0sr" path="res://Asset/button/block_button_pressed.png" id="16_wux63"]
+[ext_resource type="Texture2D" uid="uid://b4cpbjoat0so4" path="res://Asset/button/spell_button_pressed.png" id="18_afrfx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hvfyp"]
-radius = 18.0
+radius = 15.0
 height = 54.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n471f"]
@@ -175,6 +186,30 @@ region = Rect2(150, 185, 50, 37)
 [sub_resource type="AtlasTexture" id="AtlasTexture_kdg72"]
 atlas = ExtResource("3_gwnis")
 region = Rect2(200, 185, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_376rx"]
+atlas = ExtResource("1_4ntmi")
+region = Rect2(200, 74, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uimrg"]
+atlas = ExtResource("1_4ntmi")
+region = Rect2(250, 74, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgot3"]
+atlas = ExtResource("1_4ntmi")
+region = Rect2(300, 74, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wux63"]
+atlas = ExtResource("1_4ntmi")
+region = Rect2(0, 111, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afrfx"]
+atlas = ExtResource("1_4ntmi")
+region = Rect2(50, 111, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6uu0"]
+atlas = ExtResource("1_4ntmi")
+region = Rect2(100, 111, 50, 37)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5htga"]
 atlas = ExtResource("1_4ntmi")
@@ -461,6 +496,29 @@ animations = [{
 "loop": false,
 "name": &"Death",
 "speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_376rx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uimrg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dgot3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wux63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afrfx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6uu0")
+}],
+"loop": false,
+"name": &"DoubleJump",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1047,6 +1105,33 @@ tracks/1/keys = {
 "values": ["Death"]
 }
 
+[sub_resource type="Animation" id="Animation_2icva"]
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["DoubleJump"]
+}
+
 [sub_resource type="Animation" id="Animation_p5o4e"]
 length = 0.2
 loop_mode = 1
@@ -1101,6 +1186,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Idle"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackDirection/DamageBox/HitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
 }
 
 [sub_resource type="Animation" id="Animation_dkpta"]
@@ -1172,6 +1269,38 @@ tracks/1/keys = {
 "update": 1,
 "values": ["Run"]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"steps"
+}, {
+"args": [],
+"method": &"steps"
+}, {
+"args": [],
+"method": &"steps"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AttackDirection/DamageBox/HitBox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.09),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
 
 [sub_resource type="Animation" id="Animation_pisgm"]
 length = 0.5
@@ -1241,6 +1370,18 @@ tracks/1/keys = {
 "update": 1,
 "values": ["Walk"]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackDirection/DamageBox/HitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.07),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gwnis"]
 _data = {
@@ -1253,6 +1394,7 @@ _data = {
 &"Block": SubResource("Animation_x3vf3"),
 &"Damage": SubResource("Animation_apopc"),
 &"Death": SubResource("Animation_5htga"),
+&"DoubleJump": SubResource("Animation_2icva"),
 &"Fall": SubResource("Animation_p5o4e"),
 &"Idle": SubResource("Animation_gu6f8"),
 &"Jump": SubResource("Animation_dkpta"),
@@ -1393,23 +1535,23 @@ collision_layer = 2
 script = ExtResource("1_btcbx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=104931560]
-visible = false
-position = Vector2(-2, 6)
+position = Vector2(0, -4)
 shape = SubResource("CapsuleShape2D_hvfyp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=227067818]
-position = Vector2(0.18615687, 0.50825846)
+position = Vector2(2.9999995, -11)
 scale = Vector2(1.9043069, 1.9725267)
 sprite_frames = SubResource("SpriteFrames_l8h54")
-animation = &"Attack"
+animation = &"Walk"
 autoplay = "Idle"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1832239738]
+zoom = Vector2(1.1, 1.1)
 process_callback = 0
 limit_left = 0
 limit_top = 0
 limit_right = 1920
-limit_bottom = 1080
+limit_bottom = 620
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 
@@ -1421,18 +1563,19 @@ libraries/ = SubResource("AnimationLibrary_gwnis")
 [node name="DamageBox" parent="AttackDirection" unique_id=500668795 instance=ExtResource("5_851wy")]
 
 [node name="HurtBox" parent="AttackDirection/DamageBox" index="0" unique_id=671054051]
+position = Vector2(3, 0)
 collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" parent="AttackDirection/DamageBox/HurtBox" index="0" unique_id=1099071565]
-position = Vector2(-2, 9)
+position = Vector2(-3, 0)
 
 [node name="HitBox" parent="AttackDirection/DamageBox" index="1" unique_id=1371413932]
 collision_layer = 64
 collision_mask = 32
 
 [node name="CollisionShape2D" parent="AttackDirection/DamageBox/HitBox" index="0" unique_id=972444790]
-position = Vector2(19, 4)
+position = Vector2(19, 0)
 
 [node name="Stats" parent="." unique_id=478911576 instance=ExtResource("6_hlrar")]
 
@@ -1450,6 +1593,62 @@ horizontal_alignment = 1
 libraries/ = SubResource("AnimationLibrary_3ucvd")
 
 [node name="Gold" parent="." unique_id=1313179828 instance=ExtResource("7_ejjyh")]
+
+[node name="Leafs" parent="." unique_id=481024125 instance=ExtResource("8_3ucvd")]
+position = Vector2(0, 23)
+
+[node name="MobileControl" type="CanvasLayer" parent="." unique_id=1903942707]
+
+[node name="MoveLeft" type="TouchScreenButton" parent="MobileControl" unique_id=608611478]
+modulate = Color(1, 1, 1, 0.7137255)
+position = Vector2(47, 540)
+scale = Vector2(1.6, 1.6)
+texture_normal = ExtResource("9_8qu8i")
+texture_pressed = ExtResource("10_376rx")
+passby_press = true
+action = "left"
+
+[node name="MoveRight" type="TouchScreenButton" parent="MobileControl" unique_id=74982848]
+modulate = Color(1, 1, 1, 0.7137255)
+position = Vector2(207.00002, 603.9999)
+rotation = 3.1415927
+scale = Vector2(1.6, 1.6)
+texture_normal = ExtResource("9_8qu8i")
+texture_pressed = ExtResource("10_376rx")
+passby_press = true
+action = "right"
+
+[node name="AttackButon" type="TouchScreenButton" parent="MobileControl" unique_id=1701727783]
+modulate = Color(1, 1, 1, 0.7137255)
+position = Vector2(1146, 505.00006)
+scale = Vector2(2.5, 2.5)
+texture_normal = ExtResource("10_mvh6x")
+texture_pressed = ExtResource("12_uimrg")
+action = "attack"
+
+[node name="RunButton" type="TouchScreenButton" parent="MobileControl" unique_id=1674654533]
+modulate = Color(1, 1, 1, 0.7137255)
+position = Vector2(1014, 517)
+scale = Vector2(2, 2)
+texture_normal = ExtResource("11_3fr1j")
+texture_pressed = ExtResource("14_dgot3")
+action = "run"
+
+[node name="BlockButton" type="TouchScreenButton" parent="MobileControl" unique_id=963481091]
+modulate = Color(1, 1, 1, 0.7137255)
+position = Vector2(1061, 409)
+scale = Vector2(2, 2)
+texture_normal = ExtResource("12_pwibv")
+texture_pressed = ExtResource("16_wux63")
+action = "block"
+
+[node name="SpellButton" type="TouchScreenButton" parent="MobileControl" unique_id=1453118773]
+modulate = Color(1, 1, 1, 0.7137255)
+position = Vector2(1185, 397)
+scale = Vector2(2, 2)
+texture_normal = ExtResource("13_oljel")
+texture_pressed = ExtResource("18_afrfx")
+action = "jump"
 
 [connection signal="no_stamina" from="Stats" to="." method="_on_stats_no_stamina"]
 

@@ -13,6 +13,7 @@ var attack_cost = 10
 var block_cost = 0.5
 var slide_cost = 20
 var run_cost = 0.4
+var jump_cost = 0.5
 var old_health = max_health
 
 
@@ -44,6 +45,8 @@ func _process(delta: float) -> void:
 	stamina_bar.value = stamina
 	if stamina < 100:
 		stamina += 10 * delta
+	if stamina <= 0:
+		stamina = 0
 		
 func stamiba_consumtion():
 	stamina -= stamina_cost
