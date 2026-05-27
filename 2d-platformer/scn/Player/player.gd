@@ -12,6 +12,7 @@ enum {
 	SLIDE,
 	DAMAGE,
 	DEATH,
+	JUMP
 }
 
 const SPEED = 200.0
@@ -74,17 +75,12 @@ func _physics_process(delta: float) -> void:
 			damage_state()
 		DEATH:
 			death_state()
+		JUMP:
+			jump_state()
 		
-	if Input.is_action_just_pressed("jump") and is_on_floor() and not(Input.is_action_pressed("slide1")):
-		jump_count = true
-		velocity.y = JUMP_VELOCITY
-		animPlayer.play("Jump")
-	elif velocity.y != 0 and Input.is_action_just_pressed("jump") and jump_count == true:
-		jump_count = false
-		velocity.y = JUMP_VELOCITY * 0.9
-		animPlayer.play("DoubleJump")
-		await animPlayer.animation_finished
-
+	if Input.is_action_just_pressed("jump") and not(Input.is_action_pressed("slide1")):
+		state = JUMP
+		
 	move_and_slide()
 	
 	Global.player_pos = self.position
@@ -208,7 +204,7 @@ func attack_freeze():
 	
 func damage_state():
 	state = MOVE
-	
+
 func death_state():
 	velocity.x = 0
 	animPlayer.play("Death")
@@ -216,12 +212,32 @@ func death_state():
 	queue_free()
 	get_tree().change_scene_to_file.bind("res://scn/Menu/menu.tscn").call_deferred()
 	
+
+	
 #func jump_state():	
 	#velocity.y = JUMP_VELOCITY
 	#animPlayer.play("Jump")
 	#await animPlayer.animation_finished
 	#state = MOVE
+
+func jump_state():
+	if velocity.y != 0 and jump_count == true:
+		jump_count = false
+		velocity.y = JUMP_VELOCITY * 0.9
+		animPlayer.play("DoubleJump")
+		await animPlayer.animation_finished
+		state = MOVE
+	elif is_on_floor() and not(Input.is_action_pressed("slide1")):
+		jump_count = true
+		velocity.y = JUMP_VELOCITY
+		animPlayer.play("Jump")
+		state = MOVE
+	else:
+		jump_count = false
+		state = MOVE
 	
+	
+
 func _on_damage_received (enemy_damage):
 	if state == BLOCK:
 		enemy_damage /= 2

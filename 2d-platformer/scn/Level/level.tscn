@@ -445,11 +445,11 @@ layer_0/tile_data = PackedInt32Array(2490368, 393216, 2, 2490369, 393216, 2, 249
 [node name="Mobs" type="Node2D" parent="." unique_id=997824932]
 
 [node name="Spawner" type="Timer" parent="Mobs" unique_id=171628287]
-wait_time = 5.0
+wait_time = 4.9750000000000005
 autostart = true
 
 [node name="Spawner2" type="Timer" parent="Mobs" unique_id=1115640956]
-wait_time = 3.973
+wait_time = 10.421
 autostart = true
 
 [node name="Player" type="Node2D" parent="." unique_id=47345654]
@@ -461,6 +461,7 @@ position = Vector2(380.77542, 505.18176)
 
 [node name="PauseMenu" parent="CanvasLayer" unique_id=1287861488 instance=ExtResource("10_c4sp3")]
 process_mode = 2
+visible = false
 offset_left = -5.0
 offset_top = 3.0
 offset_right = -5.0
