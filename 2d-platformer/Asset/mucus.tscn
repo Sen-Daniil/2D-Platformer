@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dm3pixo1bsmcy"]
+
+[node name="Slime" type="CharacterBody2D" unique_id=989907868]

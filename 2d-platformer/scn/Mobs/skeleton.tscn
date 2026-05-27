@@ -746,6 +746,12 @@ _data = {
 &"Run": SubResource("Animation_6rhop")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lu3ts"]
+size = Vector2(20, 43)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ge73t"]
+size = Vector2(16, 41.5)
+
 [node name="Skeleton" unique_id=1529395668 instance=ExtResource("1_m2lkb")]
 script = ExtResource("2_opxtk")
 
@@ -754,7 +760,7 @@ position = Vector2(-3, -2)
 shape = SubResource("CapsuleShape2D_vf8bf")
 
 [node name="AttackRange" type="Area2D" parent="AttackDirection" parent_id_path=PackedInt32Array(881217986) index="0" unique_id=1054683596]
-collision_layer = 0
+collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="AttackDirection/AttackRange" index="0" unique_id=1216426537]
@@ -767,9 +773,8 @@ position = Vector2(19, 0)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3" unique_id=710260617]
 scale = Vector2(1.578125, 1.578125)
 sprite_frames = SubResource("SpriteFrames_vf8bf")
-animation = &"Death"
+animation = &"Idle"
 autoplay = "Idle"
-frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4" unique_id=206419608]
 root_node = NodePath("../AnimatedSprite2D")
@@ -781,9 +786,21 @@ position = Vector2(0, -30)
 scale = Vector2(0.7, 0.7)
 max_health = 10
 
+[node name="Area2D" type="Area2D" parent="." index="6" unique_id=1714988511]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0" unique_id=170414914]
+position = Vector2(9, -2.5)
+shape = SubResource("RectangleShape2D_lu3ts")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" index="1" unique_id=684434769]
+position = Vector2(-15, 0)
+shape = SubResource("RectangleShape2D_ge73t")
+
 [connection signal="body_entered" from="AttackDirection/AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="area_entered" from="AttackDirection/DamageBox/HurtBox" to="MobsHealth" method="_on_hurt_box_area_entered"]
 [connection signal="damage_received" from="MobsHealth" to="." method="_on_mobs_health_damage_received"]
 [connection signal="no_health" from="MobsHealth" to="." method="_on_mobs_health_no_health"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 
 [editable path="AttackDirection/DamageBox"]

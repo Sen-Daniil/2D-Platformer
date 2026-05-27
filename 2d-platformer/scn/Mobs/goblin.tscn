@@ -619,6 +619,12 @@ _data = {
 &"Run": SubResource("Animation_6rhop")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cd7tn"]
+size = Vector2(13, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_do1m4"]
+size = Vector2(13, 35)
+
 [node name="Goblin" unique_id=1529395668 instance=ExtResource("1_3634p")]
 script = ExtResource("2_16o8i")
 
@@ -641,7 +647,7 @@ scale = Vector2(1.1578646, 1.1865104)
 sprite_frames = SubResource("SpriteFrames_sj56l")
 animation = &"Attack"
 autoplay = "Idle"
-frame = 6
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4" unique_id=1466675491]
 root_node = NodePath("../AnimatedSprite2D")
@@ -653,9 +659,21 @@ position = Vector2(0, -30)
 scale = Vector2(0.7, 0.7)
 max_health = 10
 
+[node name="Area2D" type="Area2D" parent="." index="6" unique_id=680092988]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0" unique_id=1071325345]
+position = Vector2(12.5, -4)
+shape = SubResource("RectangleShape2D_cd7tn")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" index="1" unique_id=925651163]
+position = Vector2(-11, -4)
+shape = SubResource("RectangleShape2D_do1m4")
+
 [connection signal="body_entered" from="AttackDirection/AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="area_entered" from="AttackDirection/DamageBox/HurtBox" to="MobsHealth" method="_on_hurt_box_area_entered"]
 [connection signal="damage_received" from="MobsHealth" to="." method="_on_mobs_health_damage_received"]
 [connection signal="no_health" from="MobsHealth" to="." method="_on_mobs_health_no_health"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 
 [editable path="AttackDirection/DamageBox"]

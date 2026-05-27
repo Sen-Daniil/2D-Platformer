@@ -41,6 +41,6 @@ func skeloton_spawn2():
 	
 func goblin_spawn():
 	var goblin = goblin_preload.instantiate()
-	goblin.position = Vector2(randi_range(1000, 1200),550)
+	goblin.position = Vector2(randi_range(1000, 1200),400)
 	$Mobs.add_child(goblin)
 	

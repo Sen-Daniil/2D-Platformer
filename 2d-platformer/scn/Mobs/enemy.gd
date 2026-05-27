@@ -48,8 +48,10 @@ func _physics_process(delta: float) -> void:
 	
 	player = Global.player_pos
 	
+	
 func _on_attack_range_body_entered(_body: Node2D) -> void:
 	state = ATTACK
+	
 	
 func idle_state():
 	velocity.x = 0
@@ -99,3 +101,5 @@ func _on_hit_box_area_entered(_area: Area2D) -> void:
 
 func _on_run_timeout() -> void:
 	move_speed = move_toward(move_speed, randi_range(120, 170), 100)
+
+	
