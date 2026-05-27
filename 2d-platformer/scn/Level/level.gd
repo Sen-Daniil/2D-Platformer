@@ -9,10 +9,7 @@ var goblin_preload = preload("res://scn/Mobs/goblin.tscn")
 var voln_count: int
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	Global.gold = 0
-	voln_count = 1
-	set_voln_text()
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -47,5 +44,3 @@ func goblin_spawn():
 	goblin.position = Vector2(randi_range(1000, 1200),550)
 	$Mobs.add_child(goblin)
 	
-func set_voln_text():
-	voln_text.text = "Волна " + str(voln_count)
