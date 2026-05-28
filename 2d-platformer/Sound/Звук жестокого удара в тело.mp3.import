@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bhbf86s48u7uv"
+path="res://.godot/imported/Звук жестокого удара в тело.mp3-50d57dfc39ba8b2bd3f1350b22195331.mp3str"
+
+[deps]
+
+source_file="res://Sound/Звук жестокого удара в тело.mp3"
+dest_files=["res://.godot/imported/Звук жестокого удара в тело.mp3-50d57dfc39ba8b2bd3f1350b22195331.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

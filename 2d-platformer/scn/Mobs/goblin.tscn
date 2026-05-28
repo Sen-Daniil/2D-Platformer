@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://dh5a65k1slm2p" path="res://Asset/Goblin/Death.png" id="5_do1m4"]
 [ext_resource type="Texture2D" uid="uid://yy3uojjjqmru" path="res://Asset/Goblin/Idle.png" id="6_y6sa7"]
 [ext_resource type="Texture2D" uid="uid://dvug3nspfk3k0" path="res://Asset/Goblin/Run.png" id="7_hktfx"]
+[ext_resource type="AudioStream" uid="uid://c37gtell7fscf" path="res://Sound/59292a49a1a1250.mp3" id="9_y6sa7"]
+[ext_resource type="AudioStream" uid="uid://buxcha6t1qmwk" path="res://Sound/6fdc7c62c8b93e1.mp3" id="10_hktfx"]
+[ext_resource type="AudioStream" uid="uid://bjr1lcq1cb2bv" path="res://Sound/1b027a1aaa3244e.mp3" id="11_e0sj2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sdq6y"]
 radius = 15.0
@@ -374,6 +377,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../AudioStreamPlayer:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.100743175),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_uhxtc"]
 length = 0.44444445
@@ -528,6 +543,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../AudioStreamPlayer:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_vf8bf"]
 length = 0.8
@@ -625,6 +652,11 @@ size = Vector2(13, 35)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_do1m4"]
 size = Vector2(13, 35)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_asoil"]
+streams_count = 2
+stream_0/stream = ExtResource("10_hktfx")
+stream_1/stream = ExtResource("11_e0sj2")
+
 [node name="Goblin" unique_id=1529395668 instance=ExtResource("1_3634p")]
 collision_mask = 129
 script = ExtResource("2_16o8i")
@@ -646,9 +678,9 @@ disabled = true
 position = Vector2(1.1601509, -11.6914015)
 scale = Vector2(1.1578646, 1.1865104)
 sprite_frames = SubResource("SpriteFrames_sj56l")
-animation = &"Attack"
+animation = &"Damage"
 autoplay = "Idle"
-frame = 4
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4" unique_id=1466675491]
 root_node = NodePath("../AnimatedSprite2D")
@@ -670,6 +702,15 @@ shape = SubResource("RectangleShape2D_cd7tn")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" index="1" unique_id=925651163]
 position = Vector2(-11, -4)
 shape = SubResource("RectangleShape2D_do1m4")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="7" unique_id=2024277860]
+stream = ExtResource("9_y6sa7")
+volume_db = -7.068
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." index="8" unique_id=1548247008]
+stream = SubResource("AudioStreamRandomizer_asoil")
+volume_db = -10.602
+autoplay = true
 
 [connection signal="body_entered" from="AttackDirection/AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="area_entered" from="AttackDirection/DamageBox/HurtBox" to="MobsHealth" method="_on_hurt_box_area_entered"]

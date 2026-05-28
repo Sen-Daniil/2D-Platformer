@@ -2,6 +2,8 @@ extends Enemy
 
 const JUMP_VELOCITY = -400.0
 
+
+
 func _on_mobs_health_no_health() -> void:
 	state = DEATH
 	

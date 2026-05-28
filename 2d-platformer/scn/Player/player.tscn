@@ -18,15 +18,13 @@
 [ext_resource type="Texture2D" uid="uid://d3cfkcipr2ve5" path="res://Asset/button/speed_button_pressed.png" id="14_dgot3"]
 [ext_resource type="Texture2D" uid="uid://cykd7x3l5d0sr" path="res://Asset/button/block_button_pressed.png" id="16_wux63"]
 [ext_resource type="Texture2D" uid="uid://b4cpbjoat0so4" path="res://Asset/button/spell_button_pressed.png" id="18_afrfx"]
-[ext_resource type="AudioStream" uid="uid://mh701iimsgai" path="res://Sound/step.MP3" id="19_dgot3"]
-[ext_resource type="AudioStream" uid="uid://bc8ufhj1ykywk" path="res://Sound/step2.MP3" id="20_wux63"]
-[ext_resource type="AudioStream" uid="uid://dgb33vmn3hrfl" path="res://Sound/swing.MP3" id="21_2icva"]
-[ext_resource type="AudioStream" uid="uid://sbmo8ttoeu1l" path="res://Sound/swing2.MP3" id="22_6twxq"]
-[ext_resource type="AudioStream" uid="uid://csq8momjgfobr" path="res://Sound/swing3.MP3" id="23_wqtrd"]
-[ext_resource type="AudioStream" uid="uid://bmhv23o0ndhte" path="res://Sound/swing4.MP3" id="24_qj5hy"]
+[ext_resource type="AudioStream" uid="uid://cvflyt3aftvso" path="res://Sound/Footstep on sand 3.mp3" id="19_co266"]
+[ext_resource type="AudioStream" uid="uid://ckfj6c4k0bpuh" path="res://Sound/Footstep on sand 2.mp3" id="20_co266"]
+[ext_resource type="AudioStream" uid="uid://bfik0bqrehmpk" path="res://Sound/Footstep on sand 1.mp3" id="21_yo4ox"]
+[ext_resource type="AudioStream" uid="uid://b2jmg0t5b26qq" path="res://Sound/fb5b527adcfa08b.mp3" id="22_wqtrd"]
+[ext_resource type="AudioStream" uid="uid://gmwv4x830a16" path="res://Sound/bd3c834119f353b.mp3" id="23_qj5hy"]
 [ext_resource type="AudioStream" uid="uid://bs32wfkuqqt7a" path="res://Sound/1fee05b563c8732.mp3" id="25_6twxq"]
-[ext_resource type="AudioStream" uid="uid://pj2m0w5w7ohs" path="res://Sound/player_hurt.MP3" id="26_qj5hy"]
-[ext_resource type="AudioStream" uid="uid://ckt5knc0swcm5" path="res://Sound/player)hurt2.MP3" id="27_co266"]
+[ext_resource type="AudioStream" uid="uid://b7mghtmq0vbqm" path="res://Sound/681e8fc7bfdf135.mp3" id="25_wqtrd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hvfyp"]
 radius = 15.0
@@ -1684,26 +1682,25 @@ _data = {
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_376rx"]
-streams_count = 2
-stream_0/stream = ExtResource("19_dgot3")
-stream_1/stream = ExtResource("20_wux63")
+streams_count = 3
+stream_0/stream = ExtResource("19_co266")
+stream_1/stream = ExtResource("20_co266")
+stream_2/stream = ExtResource("21_yo4ox")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_co266"]
-streams_count = 4
-stream_0/stream = ExtResource("21_2icva")
-stream_1/stream = ExtResource("22_6twxq")
-stream_2/stream = ExtResource("23_wqtrd")
-stream_3/stream = ExtResource("24_qj5hy")
+streams_count = 2
+stream_0/stream = ExtResource("22_wqtrd")
+stream_1/stream = ExtResource("23_qj5hy")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2icva"]
-streams_count = 2
-stream_0/stream = ExtResource("19_dgot3")
-stream_1/stream = ExtResource("20_wux63")
+streams_count = 3
+stream_0/stream = ExtResource("19_co266")
+stream_1/stream = ExtResource("21_yo4ox")
+stream_2/stream = ExtResource("20_co266")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yo4ox"]
-streams_count = 2
-stream_0/stream = ExtResource("26_qj5hy")
-stream_1/stream = ExtResource("27_co266")
+streams_count = 1
+stream_0/stream = ExtResource("25_wqtrd")
 
 [node name="Player" type="CharacterBody2D" unique_id=1243089262]
 collision_layer = 2
@@ -1845,7 +1842,8 @@ pitch_scale = 0.49
 
 [node name="Hurt" type="AudioStreamPlayer" parent="Sound" unique_id=1452221721]
 stream = SubResource("AudioStreamRandomizer_yo4ox")
-pitch_scale = 0.92
+volume_db = -9.22
+pitch_scale = 1.51
 
 [connection signal="no_stamina" from="Stats" to="." method="_on_stats_no_stamina"]
 

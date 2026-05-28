@@ -4,6 +4,8 @@ class_name Enemy
 @onready var animPlayer = $AnimationPlayer
 @onready var sprite = $AnimatedSprite2D
 
+
+
 var player = Vector2.ZERO
 var direction = Vector2.ZERO
 var damage = 20
