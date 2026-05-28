@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://b1yrldqur74hm"]
 
+[ext_resource type="AudioStream" uid="uid://iwxsmhaa5wfy" path="res://Sound/click-21156.mp3" id="1_7jt0e"]
+
 [node name="PauseMenu" type="Control" unique_id=1287861488]
 layout_mode = 3
 anchors_preset = 15
@@ -80,3 +82,6 @@ offset_bottom = 36.0
 grow_horizontal = 2
 text = "MENU"
 horizontal_alignment = 1
+
+[node name="cli" type="AudioStreamPlayer" parent="." unique_id=1496470428]
+stream = ExtResource("1_7jt0e")

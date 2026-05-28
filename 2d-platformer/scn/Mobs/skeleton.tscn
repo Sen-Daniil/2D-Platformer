@@ -753,6 +753,7 @@ size = Vector2(20, 43)
 size = Vector2(16, 41.5)
 
 [node name="Skeleton" unique_id=1529395668 instance=ExtResource("1_m2lkb")]
+collision_mask = 129
 script = ExtResource("2_opxtk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0" unique_id=702223204]
@@ -787,6 +788,7 @@ scale = Vector2(0.7, 0.7)
 max_health = 10
 
 [node name="Area2D" type="Area2D" parent="." index="6" unique_id=1714988511]
+visible = false
 collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0" unique_id=170414914]

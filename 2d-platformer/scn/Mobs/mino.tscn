@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://sh7k6rlwhgdh"]
+
+[ext_resource type="PackedScene" uid="uid://bbndjpxi0rsfl" path="res://scn/Mobs/enemy.tscn" id="1_365t0"]
+
+[node name="Mino" unique_id=1529395668 instance=ExtResource("1_365t0")]
+
+[editable path="AttackDirection/DamageBox"]

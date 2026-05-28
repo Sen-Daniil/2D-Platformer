@@ -23,6 +23,8 @@ var run_speed = 1
 @onready var animPlayer = $AnimationPlayer
 @onready var stats = $Stats
 @onready var leafs: GPUParticles2D = $Leafs
+@onready var smack = $Sound/Smack
+@onready var hurt: AudioStreamPlayer = $Sound/Hurt
 
 
 
@@ -240,6 +242,7 @@ func jump_state():
 
 func _on_damage_received (enemy_damage):
 	if state == BLOCK:
+		smack.play()
 		enemy_damage /= 2
 	elif state == SLIDE:
 		enemy_damage = 0
@@ -257,6 +260,7 @@ func _on_stats_no_stamina() -> void:
 	recovery = false
 	
 func damage_anim():
+	hurt.play()
 	self.modulate = Color(1,0,0,1)
 	var tween = get_tree().create_tween()
 	tween.parallel().tween_property(self, "velocity", Vector2(0,0), 0.04)

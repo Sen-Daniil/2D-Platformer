@@ -102,4 +102,10 @@ func _on_hit_box_area_entered(_area: Area2D) -> void:
 func _on_run_timeout() -> void:
 	move_speed = move_toward(move_speed, randi_range(120, 170), 100)
 
-	
+
+func _on_mobs_health_damage_received() -> void:
+	pass # Replace with function body.
+
+
+func _on_mobs_health_no_health() -> void:
+	pass # Replace with function body.

@@ -31,16 +31,16 @@ func _on_spawner_timeout() -> void:
 	
 func skeloton_spawn():
 	var skeleton = skeleton_preload.instantiate()
-	skeleton.position = Vector2(randi_range(100, 200),550)
+	skeleton.position = Vector2(randi_range(-250, -200),250)
 	$Mobs.add_child(skeleton)
 	
 func skeloton_spawn2():
 	var skeleton = skeleton_preload.instantiate()
-	skeleton.position = Vector2(randi_range(1000, 1200),550)
+	skeleton.position = Vector2(randi_range(-250, -200),250)
 	$Mobs.add_child(skeleton)
 	
 func goblin_spawn():
 	var goblin = goblin_preload.instantiate()
-	goblin.position = Vector2(randi_range(1000, 1200),400)
+	goblin.position = Vector2(randi_range(2900, 2910),140)
 	$Mobs.add_child(goblin)
 	

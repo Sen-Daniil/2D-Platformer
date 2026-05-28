@@ -626,6 +626,7 @@ size = Vector2(13, 35)
 size = Vector2(13, 35)
 
 [node name="Goblin" unique_id=1529395668 instance=ExtResource("1_3634p")]
+collision_mask = 129
 script = ExtResource("2_16o8i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0" unique_id=1845379823]
